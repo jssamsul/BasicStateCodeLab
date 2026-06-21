@@ -20,7 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 
-@Composable
+/*@Composable
 fun WellnessScreen(
     modifier: Modifier = Modifier,
     wellnessViewModel: WellnessViewModel = viewModel()
@@ -38,4 +38,4 @@ fun WellnessScreen(
             }
         )
     }
-}
+}*/
