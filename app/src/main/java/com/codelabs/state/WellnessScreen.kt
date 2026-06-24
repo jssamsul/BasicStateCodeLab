@@ -20,6 +20,25 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
 
+@Composable
+fun WellnessScreen(
+        modifier: Modifier = Modifier,
+        wellnessViewModel: WellnessViewModel = viewModel()
+) {
+    Column(modifier = modifier) {
+        StatefulCounter()
+
+
+        WellnessTasksList(
+                list = wellnessViewModel.tasks,
+                onCloseTask = { task -> wellnessViewModel.remove(task) },
+                onCheckStatus = { task, checkstatus ->
+                    wellnessViewModel.changeStatus(task, checkstatus)
+                })
+    }
+}
+
+
 /*@Composable
 fun WellnessScreen(
     modifier: Modifier = Modifier,

@@ -15,6 +15,7 @@
  */
 package com.codelabs.state
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
 
@@ -24,7 +25,30 @@ class WellnessViewModel : ViewModel() {
      * Instead define _tasks and tasks. _tasks is internal and mutable inside the ViewModel.
      * tasks is public and read-only.
      */
-    private val _tasks = getWellnessTasks().toMutableStateList()
+    private val _task = getWellnessTasks().toMutableStateList()
+    private val _checkState = mutableStateOf(false)
+
+    var checkedState: Boolean = _checkState.value
+
+    fun changeCheckedState(checked: Boolean) {
+        _checkState.value = checked
+    }
+
+    val tasks: List<WellnessTask>
+        get() = _task
+
+    fun remove(item: WellnessTask) {
+        _task.remove(item)
+    }
+
+    fun changeStatus(item: WellnessTask, checked: Boolean){
+        _task.find { it.id == item.id }?.let { task ->
+            task.checked = checked
+        }
+    }
+
+
+    /*private val _tasks = getWellnessTasks().toMutableStateList()
     val tasks: List<WellnessTask>
         get() = _tasks
 
@@ -35,7 +59,7 @@ class WellnessViewModel : ViewModel() {
     fun changeTaskChecked(item: WellnessTask, checked: Boolean) =
         tasks.find { it.id == item.id }?.let { task ->
             task.checked = checked
-        }
+        }*/
 }
 
 private fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }

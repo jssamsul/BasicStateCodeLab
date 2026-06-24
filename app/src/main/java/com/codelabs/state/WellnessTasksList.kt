@@ -20,6 +20,27 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
+
+@Composable
+fun WellnessTasksList(
+        list: List<WellnessTask>,
+        onCloseTask: (WellnessTask) -> Unit,
+        onCheckStatus: (WellnessTask, Boolean) -> Unit,
+        modifier: Modifier = Modifier
+) {
+    LazyColumn(modifier = modifier) {
+        items(items = list, key = { task -> task.id }) { task ->
+            WellnessTaskItem(
+                    task,
+                    onClose = { onCloseTask(task) },
+                    onCheckedChange = { status -> onCheckStatus(task, status) }
+            )
+        }
+    }
+}
+
+/*
+
 @Composable
 fun WellnessTasksList(
     list: List<WellnessTask>,
@@ -32,11 +53,13 @@ fun WellnessTasksList(
     ) {
         items(
             items = list,
-            /**
-             * Use key param to define unique keys representing the items in a mutable list,
-             * instead of using the default key (list position). This prevents unnecessary
-             * recompositions.
-             */
+            */
+/**
+ * Use key param to define unique keys representing the items in a mutable list,
+ * instead of using the default key (list position). This prevents unnecessary
+ * recompositions.
+ *//*
+
             key = { task -> task.id }
         ) { task ->
             WellnessTaskItem(
@@ -48,3 +71,4 @@ fun WellnessTasksList(
         }
     }
 }
+*/

@@ -28,15 +28,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun StatelessCounter(modifier: Modifier) {
+fun StatefulCounter(modifier: Modifier = Modifier) {
     var count by rememberSaveable { mutableStateOf(0) }
 
     // -----
-    StatefulCounter(count = count, onIncrement = { count++ }, modifier = modifier)
+    StatelessCounter(count = count, onIncrement = { count++ }, modifier = modifier)
 }
 
 @Composable
-private fun StatefulCounter(count: Int, onIncrement: () -> Unit, modifier: Modifier) {
+private fun StatelessCounter(count: Int, onIncrement: () -> Unit, modifier: Modifier) {
     Column(modifier = Modifier.padding(8.dp)) {
 
         if (count > 0)
