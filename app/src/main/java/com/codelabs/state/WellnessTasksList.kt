@@ -33,7 +33,7 @@ fun WellnessTasksList(
             WellnessTaskItem(
                     task,
                     onClose = { onCloseTask(task) },
-                    onCheckedChange = { status -> onCheckStatus(task, status) }
+                    onCheckedChange = { checked -> onCheckStatus(task, checked) }
             )
         }
     }
